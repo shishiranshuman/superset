@@ -271,8 +271,17 @@ export default class SupersetClientClass {
     const host = inputHost ?? this.host;
     const cleanHost = host.slice(-1) === '/' ? host.slice(0, -1) : host; // no backslash
 
-    return `${this.protocol}//${cleanHost}/${
-      endpoint[0] === '/' ? endpoint.slice(1) : endpoint
-    }`;
+    const appContainer = document.getElementById('app');
+    const dataBootstrap = appContainer?.getAttribute('data-bootstrap');
+    const dataBootstrapJson = dataBootstrap ? JSON.parse(dataBootstrap) : {};
+    const endpointPrefix = dataBootstrapJson?.common?.conf?.UI_API_URL_PREFIX;
+
+    let updatedEndpoint = endpoint[0] === '/' ? endpoint.slice(1) : endpoint;
+
+    if (endpointPrefix) {
+      updatedEndpoint = `${endpointPrefix}/${updatedEndpoint}`;
+    }
+
+    return `${this.protocol}//${cleanHost}/${updatedEndpoint}`;
   }
 }
