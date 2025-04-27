@@ -97,13 +97,47 @@ class CeleryConfig:
 
 CELERY_CONFIG = CeleryConfig
 
-FEATURE_FLAGS = {"ALERT_REPORTS": True}
+FEATURE_FLAGS = {"ALERT_REPORTS": True, "EMBEDDED_SUPERSET": True}
 ALERT_REPORTS_NOTIFICATION_DRY_RUN = True
 WEBDRIVER_BASEURL = "http://superset:8088/"  # When using docker compose baseurl should be http://superset_app:8088/
 # The base URL for the email report hyperlinks.
 WEBDRIVER_BASEURL_USER_FRIENDLY = WEBDRIVER_BASEURL
 SQLLAB_CTAS_NO_LIMIT = True
 
+APP_NAME = "Britive"
+FAVICONS = [{"href": "/static/assets/images/britive-favicon.ico"}]
+APP_ICON = "/static/assets/images/britive_logo.png"
+CUSTOM_CSS = True
+SESSION_COOKIE_HTTPONLY = False  # Prevent cookie from being read by frontend JS?
+SESSION_COOKIE_SECURE = False  # Prevent cookie from being transmitted over non-tls?
+SESSION_COOKIE_SAMESITE = "None"
+ENABLE_CORS = True
+WTF_CSRF_ENABLED=False
+HTTP_HEADERS={"X-Frame-Options":"ALLOWALL"}
+TALISMAN_ENABLED = False
+GUEST_ROLE_NAME = "Gamma"
+CORS_OPTIONS = {
+    'supports_credentials': True,
+    'allow_headers': ['*'],
+    'resources':['*'],
+    'origins': ['*']
+}
+THEME_OVERRIDES = {
+    "colors": {
+        "text": {
+            "label": "#161616",
+            "help": "#6f6f6f",
+        },
+        "primary": {
+            "base": "#0561a7",
+            "dark1": '#007fe0',
+            "light4": "transparent"
+        },
+        "info": {
+            "base": "#0561a7",
+        },
+    },
+}
 #
 # Optionally import superset_config_docker.py (which will have been included on
 # the PYTHONPATH) in order to allow for local settings to be overridden

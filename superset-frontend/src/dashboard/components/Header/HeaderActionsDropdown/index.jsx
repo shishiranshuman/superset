@@ -23,9 +23,9 @@ import { connect } from 'react-redux';
 import { t } from '@superset-ui/core';
 import { Menu } from 'src/components/Menu';
 import { URL_PARAMS } from 'src/constants';
-import ShareMenuItems from 'src/dashboard/components/menu/ShareMenuItems';
+// import ShareMenuItems from 'src/dashboard/components/menu/ShareMenuItems';
 import DownloadMenuItems from 'src/dashboard/components/menu/DownloadMenuItems';
-import CssEditor from 'src/dashboard/components/CssEditor';
+// import CssEditor from 'src/dashboard/components/CssEditor';
 import RefreshIntervalModal from 'src/dashboard/components/RefreshIntervalModal';
 import SaveModal from 'src/dashboard/components/SaveModal';
 import HeaderReportDropdown from 'src/features/reports/ReportModal/HeaderReportDropdown';
@@ -91,7 +91,7 @@ export class HeaderActionsDropdown extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      css: props.customCss,
+      // css: props.customCss,
       showReportSubMenu: null,
     };
 
@@ -103,7 +103,7 @@ export class HeaderActionsDropdown extends PureComponent {
 
   UNSAFE_componentWillReceiveProps(nextProps) {
     if (this.props.customCss !== nextProps.customCss) {
-      this.setState({ css: nextProps.customCss }, () => {
+      this.setState(() => {
         injectCustomCss(nextProps.customCss);
       });
     }
@@ -183,22 +183,22 @@ export class HeaderActionsDropdown extends PureComponent {
       ...rest
     } = this.props;
 
-    const emailTitle = t('Superset dashboard');
-    const emailSubject = `${emailTitle} ${dashboardTitle}`;
-    const emailBody = t('Check out this dashboard: ');
+    // const emailTitle = t('Superset dashboard');
+    // const emailSubject = `${emailTitle} ${dashboardTitle}`;
+    // const emailBody = t('Check out this dashboard: ');
 
     const isEmbedded = !dashboardInfo?.userId;
 
-    const url = getDashboardUrl({
-      pathname: window.location.pathname,
-      filters: getActiveFilters(),
-      hash: window.location.hash,
-    });
+    // const url = getDashboardUrl({
+    //   pathname: window.location.pathname,
+    //   filters: getActiveFilters(),
+    //   hash: window.location.hash,
+    // });
 
     const refreshIntervalOptions =
       dashboardInfo.common?.conf?.DASHBOARD_AUTO_REFRESH_INTERVALS;
 
-    const dashboardComponentId = [...(directPathToChild || [])].pop();
+    // const dashboardComponentId = [...(directPathToChild || [])].pop();
 
     return (
       <Menu selectable={false} data-test="header-actions-menu" {...rest}>
@@ -222,15 +222,15 @@ export class HeaderActionsDropdown extends PureComponent {
               : t('Enter fullscreen')}
           </Menu.Item>
         )}
-        {editMode && (
+        {/* {editMode && (
           <Menu.Item
             key={MenuKeys.EditProperties}
             onClick={this.handleMenuClick}
           >
             {t('Edit properties')}
           </Menu.Item>
-        )}
-        {editMode && (
+        )} */}
+        {/* {editMode && (
           <Menu.Item key={MenuKeys.EditCss}>
             <CssEditor
               triggerNode={<span>{t('Edit CSS')}</span>}
@@ -239,7 +239,7 @@ export class HeaderActionsDropdown extends PureComponent {
               addDangerToast={addDangerToast}
             />
           </Menu.Item>
-        )}
+        )} */}
         <Menu.Divider />
         {userCanSave && (
           <Menu.Item key={MenuKeys.SaveModal}>
@@ -279,7 +279,7 @@ export class HeaderActionsDropdown extends PureComponent {
             dashboardId={dashboardId}
           />
         </Menu.SubMenu>
-        {userCanShare && (
+        {/* {userCanShare && (
           <Menu.SubMenu
             key={MenuKeys.Share}
             data-test="share-dashboard-menu-item"
@@ -298,7 +298,7 @@ export class HeaderActionsDropdown extends PureComponent {
               dashboardComponentId={dashboardComponentId}
             />
           </Menu.SubMenu>
-        )}
+        )} */}
         {!editMode && userCanCurate && (
           <Menu.Item
             key={MenuKeys.ManageEmbedded}

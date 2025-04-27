@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { Fragment, useState, useEffect, FC, PureComponent } from 'react';
+import { useState, useEffect, FC, PureComponent } from 'react';
 
 import rison from 'rison';
 import { useSelector } from 'react-redux';
@@ -31,18 +31,18 @@ import {
   SupersetTheme,
   SupersetClient,
   getExtensionsRegistry,
-  useTheme,
+  // useTheme,
 } from '@superset-ui/core';
 import { MainNav as Menu } from 'src/components/Menu';
-import { Tooltip } from 'src/components/Tooltip';
+// import { Tooltip } from 'src/components/Tooltip';
 import Icons from 'src/components/Icons';
-import Label from 'src/components/Label';
+// import Label from 'src/components/Label';
 import { findPermission } from 'src/utils/findPermission';
 import { isUserAdmin } from 'src/dashboard/util/permissionUtils';
 import {
   MenuObjectProps,
   UserWithPermissionsAndRoles,
-  MenuObjectChildProps,
+  // MenuObjectChildProps,
 } from 'src/types/bootstrapTypes';
 import { RootState } from 'src/dashboard/types';
 import DatabaseModal from 'src/features/databases/DatabaseModal';
@@ -65,17 +65,17 @@ const versionInfoStyles = (theme: SupersetTheme) => css`
   font-size: ${theme.typography.sizes.xs}px;
   white-space: nowrap;
 `;
-const StyledI = styled.div`
-  color: ${({ theme }) => theme.colors.primary.dark1};
-`;
+// const StyledI = styled.div`
+//   color: ${({ theme }) => theme.colors.primary.dark1};
+// `;
 
-const styledDisabled = (theme: SupersetTheme) => css`
-  color: ${theme.colors.grayscale.light1};
-  .ant-menu-item-active {
-    color: ${theme.colors.grayscale.light1};
-    cursor: default;
-  }
-`;
+// const styledDisabled = (theme: SupersetTheme) => css`
+//   color: ${theme.colors.grayscale.light1};
+//   .ant-menu-item-active {
+//     color: ${theme.colors.grayscale.light1};
+//     cursor: default;
+//   }
+// `;
 
 const StyledDiv = styled.div<{ align: string }>`
   display: flex;
@@ -100,16 +100,16 @@ const StyledAnchor = styled.a`
   padding-left: ${({ theme }) => theme.gridUnit}px;
 `;
 
-const tagStyles = (theme: SupersetTheme) => css`
-  color: ${theme.colors.grayscale.light5};
-`;
+// const tagStyles = (theme: SupersetTheme) => css`
+//   color: ${theme.colors.grayscale.light5};
+// `;
 
-const styledChildMenu = (theme: SupersetTheme) => css`
-  &:hover {
-    color: ${theme.colors.primary.base} !important;
-    cursor: pointer !important;
-  }
-`;
+// const styledChildMenu = (theme: SupersetTheme) => css`
+//   &:hover {
+//     color: ${theme.colors.primary.base} !important;
+//     cursor: pointer !important;
+//   }
+// `;
 
 const { SubMenu } = Menu;
 
@@ -118,7 +118,7 @@ const RightMenu = ({
   settings,
   navbarRight,
   isFrontendRoute,
-  environmentTag,
+  // environmentTag,
   setQuery,
 }: RightMenuProps & {
   setQuery: ({
@@ -151,9 +151,9 @@ const RightMenu = ({
   const [showColumnarUploadModal, setShowColumnarUploadModal] =
     useState<boolean>(false);
   const [engine, setEngine] = useState<string>('');
-  const canSql = findPermission('can_sqllab', 'Superset', roles);
-  const canDashboard = findPermission('can_write', 'Dashboard', roles);
-  const canChart = findPermission('can_write', 'Chart', roles);
+  // const canSql = findPermission('can_sqllab', 'Superset', roles);
+  // const canDashboard = findPermission('can_write', 'Dashboard', roles);
+  // const canChart = findPermission('can_write', 'Chart', roles);
   const canDatabase = findPermission('can_write', 'Database', roles);
   const canDataset = findPermission('can_write', 'Dataset', roles);
 
@@ -166,7 +166,7 @@ const RightMenu = ({
       ALLOWED_EXTENSIONS,
     );
 
-  const showActionDropdown = canSql || canChart || canDashboard;
+  // const showActionDropdown = canSql || canChart || canDashboard;
   const [allowUploads, setAllowUploads] = useState<boolean>(false);
   const [nonExamplesDBConnected, setNonExamplesDBConnected] =
     useState<boolean>(false);
@@ -280,12 +280,12 @@ const RightMenu = ({
     }
   }, [canDatabase, canDataset]);
 
-  const menuIconAndLabel = (menu: MenuObjectProps) => (
-    <>
-      <i data-test={`menu-item-${menu.label}`} className={`fa ${menu.icon}`} />
-      {menu.label}
-    </>
-  );
+  // const menuIconAndLabel = (menu: MenuObjectProps) => (
+  //   <>
+  //     <i data-test={`menu-item-${menu.label}`} className={`fa ${menu.icon}`} />
+  //     {menu.label}
+  //   </>
+  // );
 
   const handleMenuSelection = (itemChose: any) => {
     if (itemChose.key === GlobalMenuDataOptions.DbConnection) {
@@ -307,22 +307,22 @@ const RightMenu = ({
     setShowDatabaseModal(false);
   };
 
-  const tooltipText = t(
-    "Enable 'Allow file uploads to database' in any database's settings",
-  );
+  // const tooltipText = t(
+  //   "Enable 'Allow file uploads to database' in any database's settings",
+  // );
 
-  const buildMenuItem = (item: MenuObjectChildProps) =>
-    item.disable ? (
-      <Menu.Item key={item.name} css={styledDisabled} disabled>
-        <Tooltip placement="top" title={tooltipText}>
-          {item.label}
-        </Tooltip>
-      </Menu.Item>
-    ) : (
-      <Menu.Item key={item.name} css={styledChildMenu}>
-        {item.url ? <a href={item.url}> {item.label} </a> : item.label}
-      </Menu.Item>
-    );
+  // const buildMenuItem = (item: MenuObjectChildProps) =>
+  //   item.disable ? (
+  //     <Menu.Item key={item.name} css={styledDisabled} disabled>
+  //       <Tooltip placement="top" title={tooltipText}>
+  //         {item.label}
+  //       </Tooltip>
+  //     </Menu.Item>
+  //   ) : (
+  //     <Menu.Item key={item.name} css={styledChildMenu}>
+  //       {item.url ? <a href={item.url}> {item.label} </a> : item.label}
+  //     </Menu.Item>
+  //   );
 
   const onMenuOpen = (openKeys: string[]) => {
     // We should query the API only if opening Data submenus
@@ -352,7 +352,7 @@ const RightMenu = ({
     localStorage.removeItem('redux');
   };
 
-  const theme = useTheme();
+  // const theme = useTheme();
 
   return (
     <StyledDiv align={align}>
@@ -388,7 +388,7 @@ const RightMenu = ({
           type="columnar"
         />
       )}
-      {environmentTag?.text && (
+      {/* {environmentTag?.text && (
         <Label
           css={{ borderRadius: `${theme.gridUnit * 125}px` }}
           color={
@@ -401,7 +401,7 @@ const RightMenu = ({
         >
           <span css={tagStyles}>{environmentTag.text}</span>
         </Label>
-      )}
+      )} */}
       <Menu
         selectable={false}
         mode="horizontal"
@@ -409,71 +409,6 @@ const RightMenu = ({
         onOpenChange={onMenuOpen}
       >
         {RightMenuExtension && <RightMenuExtension />}
-        {!navbarRight.user_is_anonymous && showActionDropdown && (
-          <SubMenu
-            data-test="new-dropdown"
-            title={
-              <StyledI data-test="new-dropdown-icon" className="fa fa-plus" />
-            }
-            icon={<Icons.TriangleDown />}
-          >
-            {dropdownItems?.map?.(menu => {
-              const canShowChild = menu.childs?.some(
-                item => typeof item === 'object' && !!item.perm,
-              );
-              if (menu.childs) {
-                if (canShowChild) {
-                  return (
-                    <SubMenu
-                      key={`sub2_${menu.label}`}
-                      className="data-menu"
-                      title={menuIconAndLabel(menu)}
-                    >
-                      {menu?.childs?.map?.((item, idx) =>
-                        typeof item !== 'string' && item.name && item.perm ? (
-                          <Fragment key={item.name}>
-                            {idx === 3 && <Menu.Divider />}
-                            {buildMenuItem(item)}
-                          </Fragment>
-                        ) : null,
-                      )}
-                    </SubMenu>
-                  );
-                }
-                if (!menu.url) {
-                  return null;
-                }
-              }
-              return (
-                findPermission(
-                  menu.perm as string,
-                  menu.view as string,
-                  roles,
-                ) && (
-                  <Menu.Item key={menu.label}>
-                    {isFrontendRoute(menu.url) ? (
-                      <Link to={menu.url || ''}>
-                        <i
-                          data-test={`menu-item-${menu.label}`}
-                          className={`fa ${menu.icon}`}
-                        />{' '}
-                        {menu.label}
-                      </Link>
-                    ) : (
-                      <a href={menu.url}>
-                        <i
-                          data-test={`menu-item-${menu.label}`}
-                          className={`fa ${menu.icon}`}
-                        />{' '}
-                        {menu.label}
-                      </a>
-                    )}
-                  </Menu.Item>
-                )
-              );
-            })}
-          </SubMenu>
-        )}
         <SubMenu
           title={t('Settings')}
           icon={<Icons.TriangleDown iconSize="xl" />}

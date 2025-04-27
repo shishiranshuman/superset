@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+a {
+  color: #0561a7;
+}
+
+.superset-button {
+  border-radius: 0 !important;
+
+  &-secondary,
+  &-tertiary,
+  &-default {
+    border: 1px solid #8d8d8d !important;
+    color: #393939 !important;
+    &:active,
+    &:focus {
+      background-color: #c6c6c6 !important;
+    }
+    &:hover {
+      background-color: #e0e0e0 !important;
+    }
+  }
+}
+
+.ant-tabs-tab {
+  color: unset !important;
+
+  &:hover {
+    color: unset !important;
+  }
+}
+
+.ant-tabs-ink-bar {
+  background: #0561a7 !important;
+}
+
+.navbar-brand > img {
+  height: unset !important;
+}
+
+.toggle-button > .anticon > svg {
+  color: #0561a7 !important;
+}
+
+.toggle-button.active {
+  background-color: #0561a7 !important;
+  &> .anticon > svg {
+    color: #fff !important;
+  }
+}
+
+.ant-tag {
+  background-color: transparent !important;
+  border: 1px solid #c6c6c6 !important;
+
+  &:hover {
+    background-color: #e0e0e0 !important;
+  }
+}
+
+.top,.main-nav{
+  background-color: #f4f4f4 !important;
+}
+
+.ant-menu-root > li {
+  background-color: #f4f4f4 !important;
+}
+
+/* changing the font as globally as possible */
+#main-menu + div *{
+  font-family: "Open Sans", sans-serif !important;
+}
+
+.dashboard-content {
+  font-family: "Open Sans", sans-serif !important;
+}

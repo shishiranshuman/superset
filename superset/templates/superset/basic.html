@@ -66,6 +66,9 @@ governing permissions and limitations under the License. #}
       type="text/css"
       href="{{ assets_prefix }}/static/appbuilder/css/select2/select2-bootstrap.min.css"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
 
     {{ css_bundle("theme") }} {% if entry %} {{ css_bundle(entry) }} {% endif %}
     {% endblock %} {{ js_bundle("theme") }}
