@@ -59,7 +59,7 @@ const propTypes = {
   userCanEdit: PropTypes.bool,
   userCanShare: PropTypes.bool,
   userCanSave: PropTypes.bool,
-  userCanCurate: PropTypes.bool.isRequired,
+  // userCanCurate: PropTypes.bool.isRequired,
   isLoading: PropTypes.bool.isRequired,
   layout: PropTypes.object.isRequired,
   expandedSlices: PropTypes.object,
@@ -170,7 +170,7 @@ export class HeaderActionsDropdown extends PureComponent {
       userCanEdit,
       userCanShare,
       userCanSave,
-      userCanCurate,
+      // userCanCurate,
       isLoading,
       refreshLimit,
       refreshWarning,
@@ -299,14 +299,14 @@ export class HeaderActionsDropdown extends PureComponent {
             />
           </Menu.SubMenu>
         )} */}
-        {!editMode && userCanCurate && (
+        {/* {!editMode && userCanCurate && (
           <Menu.Item
             key={MenuKeys.ManageEmbedded}
             onClick={this.handleMenuClick}
           >
             {t('Embed dashboard')}
           </Menu.Item>
-        )}
+        )} */}
         <Menu.Divider />
         {!editMode ? (
           this.state.showReportSubMenu ? (

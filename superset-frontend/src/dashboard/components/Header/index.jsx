@@ -23,8 +23,8 @@ import PropTypes from 'prop-types';
 import {
   styled,
   css,
-  isFeatureEnabled,
-  FeatureFlag,
+  // isFeatureEnabled,
+  // FeatureFlag,
   t,
   getExtensionsRegistry,
 } from '@superset-ui/core';
@@ -37,7 +37,7 @@ import {
 import Icons from 'src/components/Icons';
 import Button from 'src/components/Button';
 import { AntdButton } from 'src/components/';
-import { findPermission } from 'src/utils/findPermission';
+// import { findPermission } from 'src/utils/findPermission';
 import { Tooltip } from 'src/components/Tooltip';
 import { safeStringify } from 'src/utils/safeStringify';
 import ConnectedHeaderActionsDropdown from 'src/dashboard/components/Header/HeaderActionsDropdown';
@@ -56,7 +56,7 @@ import setPeriodicRunner, {
 } from 'src/dashboard/util/setPeriodicRunner';
 import { PageHeaderWithActions } from 'src/components/PageHeaderWithActions';
 import MetadataBar, { MetadataType } from 'src/components/MetadataBar';
-import DashboardEmbedModal from '../EmbeddedModal';
+// import DashboardEmbedModal from '../EmbeddedModal';
 import OverwriteConfirm from '../OverwriteConfirm';
 
 const extensionsRegistry = getExtensionsRegistry();
@@ -425,11 +425,13 @@ class Header extends PureComponent {
   }
 
   showEmbedModal = () => {
-    this.setState({ showingEmbedModal: true });
+    // this.setState({ showingEmbedModal: true });
+    console.log('Show modal');
   };
 
   hideEmbedModal = () => {
-    this.setState({ showingEmbedModal: false });
+    // this.setState({ showingEmbedModal: false });
+    console.log('hide modal');
   };
 
   getMetadataItems = () => {
@@ -488,9 +490,9 @@ class Header extends PureComponent {
       dashboardInfo.dash_edit_perm && !dashboardInfo.is_managed_externally;
     const userCanShare = dashboardInfo.dash_share_perm;
     const userCanSaveAs = dashboardInfo.dash_save_perm;
-    const userCanCurate =
-      isFeatureEnabled(FeatureFlag.EmbeddedSuperset) &&
-      findPermission('can_set_embedded', 'Dashboard', user.roles);
+    // const userCanCurate =
+    //   isFeatureEnabled(FeatureFlag.EmbeddedSuperset) &&
+    //   findPermission('can_set_embedded', 'Dashboard', user.roles);
     const refreshLimit =
       dashboardInfo.common?.conf?.SUPERSET_DASHBOARD_PERIODICAL_REFRESH_LIMIT;
     const refreshWarning =
@@ -693,7 +695,7 @@ class Header extends PureComponent {
               userCanEdit={userCanEdit}
               userCanShare={userCanShare}
               userCanSave={userCanSaveAs}
-              userCanCurate={userCanCurate}
+              // userCanCurate={userCanCurate}
               isLoading={isLoading}
               showPropertiesModal={this.showPropertiesModal}
               manageEmbedded={this.showEmbedModal}
@@ -723,13 +725,13 @@ class Header extends PureComponent {
 
         <OverwriteConfirm />
 
-        {userCanCurate && (
+        {/* {userCanCurate && (
           <DashboardEmbedModal
             show={this.state.showingEmbedModal}
             onHide={this.hideEmbedModal}
             dashboardId={dashboardInfo.id}
           />
-        )}
+        )} */}
         <Global
           styles={css`
             .ant-menu-vertical {

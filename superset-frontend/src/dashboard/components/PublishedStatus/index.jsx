@@ -18,7 +18,7 @@
  */
 import { Component } from 'react';
 import PropTypes from 'prop-types';
-import { t } from '@superset-ui/core';
+import { t, makeApi } from '@superset-ui/core';
 import { Tooltip } from 'src/components/Tooltip';
 import Label from 'src/components/Label';
 
@@ -47,10 +47,32 @@ const publishedTooltip = t(
 export default class PublishedStatus extends Component {
   componentDidMount() {
     this.togglePublished = this.togglePublished.bind(this);
+    this.enableEmbedding = this.enableEmbedding.bind(this);
+    this.disableEmbedding = this.disableEmbedding.bind(this);
   }
 
   togglePublished() {
     this.props.savePublished(this.props.dashboardId, !this.props.isPublished);
+    const embedEndpoint = `/api/v1/dashboard/${this.props.dashboardId}/embedded`;
+
+    if (this.props.isPublished) {
+      this.disableEmbedding(embedEndpoint);
+    } else {
+      this.enableEmbedding(embedEndpoint);
+    }
+  }
+
+  enableEmbedding(endpoint) {
+    makeApi({
+      method: 'POST',
+      endpoint,
+    })({
+      allowed_domains: [],
+    });
+  }
+
+  disableEmbedding(endpoint) {
+    makeApi({ method: 'DELETE', endpoint })({});
   }
 
   render() {
