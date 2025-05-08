@@ -18,13 +18,13 @@
  */
 
 import {
-  CategoricalAirbnb,
+  // CategoricalAirbnb,
   CategoricalD3,
   CategoricalEcharts,
   CategoricalGoogle,
-  CategoricalLyft,
-  CategoricalPreset,
-  CategoricalSuperset,
+  // CategoricalLyft,
+  // CategoricalPreset,
+  // CategoricalSuperset,
   SequentialCommon,
   SequentialD3,
 } from '@superset-ui/core';
@@ -36,13 +36,13 @@ export default {
 
 export const categoricalPalettes = () =>
   [
-    { palettes: CategoricalSuperset, storyName: 'Superset' },
-    { palettes: CategoricalAirbnb, storyName: 'Airbnb' },
+    // { palettes: CategoricalSuperset, storyName: 'Superset' },
+    // { palettes: CategoricalAirbnb, storyName: 'Airbnb' },
     { palettes: CategoricalD3, storyName: 'd3' },
     { palettes: CategoricalEcharts, storyName: 'ECharts' },
     { palettes: CategoricalGoogle, storyName: 'Google' },
-    { palettes: CategoricalLyft, storyName: 'Lyft' },
-    { palettes: CategoricalPreset, storyName: 'Preset' },
+    // { palettes: CategoricalLyft, storyName: 'Lyft' },
+    // { palettes: CategoricalPreset, storyName: 'Preset' },
   ].map(({ palettes, storyName }) => (
     <RenderPalettes key={storyName} title={storyName} palettes={palettes} />
   ));

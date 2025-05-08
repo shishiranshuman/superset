@@ -6,7 +6,7 @@ import {
   getCategoricalSchemeRegistry,
   getSequentialSchemeRegistry,
   CategoricalD3,
-  CategoricalSuperset,
+  // CategoricalSuperset,
   SequentialCommon,
   SequentialD3,
 } from '@superset-ui/core';
@@ -59,7 +59,7 @@ configure();
 
 // Register color schemes
 const categoricalSchemeRegistry = getCategoricalSchemeRegistry();
-[CategoricalD3, CategoricalSuperset].forEach(group => {
+[CategoricalD3].forEach(group => {
   group.forEach(scheme => {
     categoricalSchemeRegistry.registerValue(scheme.id, scheme);
   });

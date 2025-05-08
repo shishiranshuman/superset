@@ -21,7 +21,7 @@ import { styled, css, useTheme, SupersetTheme } from '@superset-ui/core';
 import { debounce } from 'lodash';
 import { Global } from '@emotion/react';
 import { getUrlParam } from 'src/utils/urlUtils';
-import { Row, Col, Grid } from 'src/components';
+import { Row, Col } from 'src/components';
 import { MainNav as DropdownMenu, MenuMode } from 'src/components/Menu';
 import { Tooltip } from 'src/components/Tooltip';
 import { NavLink, useLocation } from 'react-router-dom';
@@ -34,7 +34,7 @@ import {
   MenuObjectProps,
   MenuData,
 } from 'src/types/bootstrapTypes';
-import RightMenu from './RightMenu';
+// import RightMenu from './RightMenu';
 
 interface MenuProps {
   data: MenuData;
@@ -99,6 +99,21 @@ const StyledHeader = styled.header`
           display: none;
         }
       }
+
+      .nav-bar-close-button {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: end;
+        padding-right: 10px;
+        height: 100%;
+        close: ${theme.colors.primary.dark1};
+      }
+
+      .nav-bar-close-button:hover {
+        cursor: pointer
+      }
+
       .main-nav .ant-menu-submenu-title > svg {
         top: ${theme.gridUnit * 5.25}px;
       }
@@ -186,7 +201,7 @@ const globalStyles = (theme: SupersetTheme) => css`
 `;
 const { SubMenu } = DropdownMenu;
 
-const { useBreakpoint } = Grid;
+// const { useBreakpoint } = Grid;
 
 export function Menu({
   data: {
@@ -199,7 +214,7 @@ export function Menu({
   isFrontendRoute = () => false,
 }: MenuProps) {
   const [showMenu, setMenu] = useState<MenuMode>('horizontal');
-  const screens = useBreakpoint();
+  // const screens = useBreakpoint();
   const uiConfig = useUiConfig();
   const theme = useTheme();
 
@@ -354,13 +369,27 @@ export function Menu({
           </DropdownMenu>
         </Col>
         <Col md={8} xs={24}>
-          <RightMenu
+          <div
+            role="button"
+            className="nav-bar-close-button"
+            onClick={() => {
+              if (window.opener != null || window.history.length === 1) {
+                window.close();
+              } else {
+                window.open('https://sadev.dev.britive-app.com', '_self');
+              }
+            }}
+            tabIndex={0}
+          >
+            <span>Close</span>
+          </div>
+          {/* <RightMenu
             align={screens.md ? 'flex-end' : 'flex-start'}
             settings={settings}
             navbarRight={navbarRight}
             isFrontendRoute={isFrontendRoute}
             environmentTag={environmentTag}
-          />
+          /> */}
         </Col>
       </Row>
     </StyledHeader>
