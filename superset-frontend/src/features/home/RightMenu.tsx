@@ -48,7 +48,6 @@ import { RootState } from 'src/dashboard/types';
 import DatabaseModal from 'src/features/databases/DatabaseModal';
 import UploadDataModal from 'src/features/databases/UploadDataModel';
 import { uploadUserPerms } from 'src/views/CRUD/utils';
-import TelemetryPixel from 'src/components/TelemetryPixel';
 import LanguagePicker from './LanguagePicker';
 import {
   ExtensionConfigs,
@@ -596,11 +595,6 @@ const RightMenu = ({
           {t('Login')}
         </StyledAnchor>
       )}
-      <TelemetryPixel
-        version={navbarRight.version_string}
-        sha={navbarRight.version_sha}
-        build={navbarRight.build_number}
-      />
     </StyledDiv>
   );
 };
